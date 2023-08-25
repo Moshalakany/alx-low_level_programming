@@ -7,25 +7,19 @@
  *
  * Return: the number of nodes printed
  */
-typedef struct node {
-    char *str;
-    size_t len;
-    struct node *next;
-} list_t;
-
 size_t print_list(const list_t *h)
 {
-    size_t size = 0;
+	size_t size = 0;
 
-    for (const list_t *current = h; current; current = current->next)
-    {
-        if (!current->str)
-            printf("[0] (nil)\n");
-        else
-            printf("[%zu] %s\n", current->len, current->str);
-        
-        size++;
-    }
+	while (h)
+	{
+		if (!h->str)
+			printf("[0] (nil)\n");
+		else
+			printf("[%u] %s\n", h->len, h->str);
+		h = h->next;
+		size++;
+	}
 
-    return size;
+	return (size);
 }
