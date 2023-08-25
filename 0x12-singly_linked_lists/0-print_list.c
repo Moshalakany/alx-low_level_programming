@@ -8,21 +8,25 @@
  * Return: The number of nodes in h.
  */
 
+typedef struct node {
+    char *str;
+    size_t len;
+    struct node *next;
+} list_t;
+
 size_t print_list(const list_t *h)
 {
-	size_t nodes = 0;
+    size_t size = 0;
 
-	while (h)
-	{
-		if (h->str == NULL)
-			printf("[0] (nil)\n");
+    for (const list_t *current = h; current; current = current->next)
+    {
+        if (!current->str)
+            printf("[0] (nil)\n");
+        else
+            printf("[%zu] %s\n", current->len, current->str);
+        
+        size++;
+    }
 
-		else
-			printf("[%d] %s\n", h->len, h->str);
-
-		nodes++;
-		h = h->next;
-	}
-
-	return (nodes);
+    return size;
 }
